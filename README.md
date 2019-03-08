@@ -1,4 +1,4 @@
-# Yalantis nodejs school First homework
+# Yalantis nodejs school Second homework
 
 
 ### First task - sum.js
