@@ -1,8 +1,17 @@
 # Yalantis nodejs school Second homework
 
 
-### First task - sum.js
+### task1.js - Асинхронщина
+    
+Реализовать добавление группы к юзерам в цикле.
+(выбор как реализовать остается за вами: Promise, async/await, generators, callbacks)
+начальные данные:
 
-### Second task - memoization.js
+### task2.js - Итератор
+    
+Функция integers создает бесконечный итератор, который продолжает производить целые числа вечно.
 
-### Third task - oop.js
+Нужно создать функцию take, которая оборачивает данный итератор в другой итератор,
+останавливающийся по достижении n элементов.
+
+### task1.js - Переписать ф-цию memoization используюя ES6 features
