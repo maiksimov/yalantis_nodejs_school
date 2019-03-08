@@ -14,8 +14,8 @@ const groups = [
     {id: 2, title: 'Last Group'},
 ];
 
-const mintimeout = 500;
-const maxtimeout = 1000;
+const MIN_TIMEOUT = 500;
+const MAX_TIMEOUT = 1000;
 
 
 function addSelectedGroupToUsers(users, group) {
@@ -35,17 +35,15 @@ function addSelectedGroupToUsers(users, group) {
 }
 
 function generateUserId(user) {
+    if(generateUserId.max === undefined) {
+        generateUserId.max = getMaxFromUsers();
+    }
     return new Promise(function(resolve, reject) {
         setTimeout(() => {
-            let max = 0;
-            users.map(function (item) {
-                let id = parseInt(item.id);
-                max = id > max ? id : max;
-            });
-            console.log('Add id = ' + (max + 1) + ' to user ' + user.name);
-            user.id = ++max;
+            console.log('Add id = ' + (generateUserId.max + 1) + ' to user ' + user.name);
+            user.id = ++generateUserId.max;
             resolve();
-        }, getRandom(mintimeout, maxtimeout));
+        }, getRandom(MIN_TIMEOUT, MAX_TIMEOUT));
     });
 }
 
@@ -55,12 +53,21 @@ function addGroup(user, group) {
             user.groupId = group.id;
             console.log('Add gropId = ' + group.id + ' to user ' + user.id);
             resolve();
-        }, getRandom(mintimeout, maxtimeout));
+        }, getRandom(MIN_TIMEOUT, MAX_TIMEOUT));
     })
 }
 
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getMaxFromUsers() {
+    let max = 0;
+    users.map(function (item) {
+        let id = parseInt(item.id);
+        max = id > max ? id : max;
+    });
+    return max;
 }
 
 addSelectedGroupToUsers(users, groups[1])
